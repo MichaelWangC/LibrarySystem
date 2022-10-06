@@ -13,7 +13,7 @@
         })
     </script>
 </head>
-<body background="img/lizhi.jpg">
+<body background="img/reader_bg.jpg">
 <div id="header" style="padding-bottom: 80px"></div>
 <c:if test="${!empty succ}">
     <div class="alert alert-success alert-dismissable">

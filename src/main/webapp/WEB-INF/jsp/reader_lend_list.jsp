@@ -14,7 +14,7 @@
         })
     </script>
 </head>
-<body background="img/lizhi.jpg">
+<body background="img/reader_bg.jpg">
 <div id="header"></div>
 <div style="position: relative;top: 0%">
     <c:if test="${!empty succ}">

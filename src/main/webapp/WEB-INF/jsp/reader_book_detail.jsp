@@ -14,7 +14,7 @@
         })
     </script>
 </head>
-<body background="img/lizhi.jpg">
+<body background="img/reader_bg.jpg">
 <div id="header"></div>
 <div class="col-xs-6 col-md-offset-3" style="position: relative;top: 3%">
     <div class="panel panel-primary">

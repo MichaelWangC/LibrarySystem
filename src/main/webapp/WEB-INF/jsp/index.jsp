@@ -27,14 +27,14 @@
         }
     </style>
 </head>
-<body background="img/timg.jpg">
+<body background="img/login_bg.jpg">
 <c:if test="${!empty error}">
     <script>
             alert("${error}");
             window.location.href="login.html";
 </script>
 </c:if>
-<h2 style="text-align: center; color: white; font-family: '华文行楷'; font-size: 500%">图 书 馆</h2>
+<h2 style="text-align: center; color: #4a7098; font-family: '华文行楷'; font-size: 500%">图 书 馆</h2>
 
 <div class="panel panel-default" id="login">
     <div class="panel-heading" style="background-color: #fff">
@@ -56,7 +56,7 @@
         </div>
 
         <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
-        <button id="loginButton"  class="btn btn-primary  btn-block">登陆
+        <button id="loginButton" style="background-color: #4a7098;" class="btn btn-primary  btn-block">登陆
         </button>
         <button id="registerButton"  class="btn btn-default btn-block">注册
         </button>

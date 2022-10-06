@@ -12,7 +12,7 @@
         })
     </script>
 </head>
-<body background="img/school.jpg">
+<body background="img/admin_bg.jpg">
 
 <div id="header"></div>
 <div class="col-xs-6 col-md-offset-3" style="padding-top: 100px;position: relative">
@@ -21,7 +21,7 @@
             <h3 class="panel-title">添加读者</h3>
         </div>
         <div class="panel-body">
-            <form action="reader_add_do.html" method="post" id="readeredit" >
+            <div>
                 <div class="form-group" >
                     <label for="name">姓名</label>
                     <input type="text" class="form-control" name="name" id="name"  placeholder="请输入姓名">
@@ -47,13 +47,13 @@
                     <label for="phone">电话</label>
                     <input type="text" class="form-control" name="phone" id="phone"  >
                 </div>
-                <input style="align-items: center" type="submit" value="添加" class="btn btn-success btn-sm"
-                       class="text-left">
+
+                <button id="submitBtn" class="btn btn-success btn-sm" class="text-left">添加</button>
                 <script>
                     function mySubmit(flag){
                         return flag;
                     }
-                    $("#readeredit").submit(function () {
+                    $("#submitBtn").click(function () {
                         if($("#password").val()=='' || $("#passwordConfirm").val()=='' ||$("#name").val()==''||$("#employeeId").val()==''||$("#address").val()==''||$("#phone").val()==''){
                             alert("请填入完整读者信息！");
                             return mySubmit(false);
@@ -62,9 +62,32 @@
                             alert("密码两次输入不一致！");
                             return mySubmit(false);
                         }
+
+                        $.ajax({
+                            type: "POST",
+                            url: "api/reader/addReader",
+                            data: {
+                                name: $("#name").val(),
+                                employeeId: $("#employeeId").val(),
+                                deptName: $("#deptName").val(),
+                                phone: $("#phone").val(),
+                                password: $("#password").val()
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                alert(data.msg)
+                                if (data.stateCode == 0) {
+                                    window.location.replace("/allreaders.html")
+                                }
+                            },
+                            error: function (err) {
+                                alert(JSON.stringify(err))
+                            }
+                        })
+
                     })
                 </script>
-            </form>
+            </div>
         </div>
     </div>
 

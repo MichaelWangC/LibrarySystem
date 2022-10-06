@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ReaderInfoDao {
@@ -49,8 +51,11 @@ public class ReaderInfoDao {
         return readid;
     }
 
-    public final long checkEmployeeId(String employeeId) {
-        long readid = sqlSessionTemplate.selectOne(NAMESPACE + "checkEmployeeId", employeeId);
+    public final long checkEmployeeId(String employeeId, String readerId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("employeeId", employeeId);
+        paramMap.put("readerId", readerId);
+        long readid = sqlSessionTemplate.selectOne(NAMESPACE + "checkEmployeeId", paramMap);
         return readid;
     }
 }

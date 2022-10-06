@@ -12,7 +12,7 @@
         })
     </script>
 </head>
-<body background="img/wolf.jpg">
+<body background="img/reader_bg.jpg">
 <div id="header"></div>
 
 </body>

@@ -12,7 +12,7 @@
         })
     </script>
 </head>
-<body background="img/book2.jpg">
+<body background="img/admin_bg.jpg">
 <div id="header" style="padding-bottom: 80px"></div>
 <div class="col-xs-6 col-md-offset-3" style="position: relative;">
     <div class="panel panel-primary">
@@ -20,7 +20,7 @@
             <h3 class="panel-title">编辑读者信息《 ${readerInfo.readerId}》</h3>
         </div>
         <div class="panel-body">
-            <form action="reader_edit_do.html?readerId=${readerInfo.readerId}" method="post" id="readeredit" >
+            <div>
                 <div class="input-group">
                     <span class="input-group-addon">姓名</span>
                     <input type="text" class="form-control" name="name" id="name" value="${readerInfo.name}" >
@@ -37,20 +37,44 @@
                     <span class="input-group-addon">电话</span>
                     <input type="text" class="form-control" name="phone" id="phone" value="${readerInfo.phone}" >
                 </div>
-                <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
-                <script>
-                    $("#readeredit").submit(function () {
-                        if($("#name").val()==''||$("#employeeId").val()==''||$("#deptName").val()==''||$("#phone").val()==''){
-                            alert("请填入完整读者信息！");
-                            return false;
-                        }
-                    })
-                </script>
-            </form>
+
+                <button id="submitBtn" class="btn btn-success btn-sm" class="text-left">确定</button>
+            </div>
         </div>
     </div>
 
 </div>
+
+<script>
+    $("#submitBtn").click(function () {
+        if($("#name").val()==''||$("#employeeId").val()==''||$("#deptName").val()==''||$("#phone").val()==''){
+            alert("请填入完整读者信息！");
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: "api/reader/addReader",
+            data: {
+                readerId: ${readerInfo.readerId},
+                name: $("#name").val(),
+                employeeId: $("#employeeId").val(),
+                deptName: $("#deptName").val(),
+                phone: $("#phone").val()
+            },
+            dataType: "json",
+            success: function(data) {
+                alert(data.msg)
+                if (data.stateCode == 0) {
+                    window.location.replace("/allreaders.html")
+                }
+            },
+            error: function (err) {
+                alert(JSON.stringify(err))
+            }
+        })
+    })
+
+</script>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav style="position:fixed;z-index: 999;width: 100%;background-color: #337ab7" class="navbar navbar-default"
+<nav style="position:fixed;z-index: 999;width: 100%;background-color: #4a7098" class="navbar navbar-default"
      role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">

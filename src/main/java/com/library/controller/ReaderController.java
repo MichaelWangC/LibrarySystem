@@ -79,24 +79,39 @@ public class ReaderController {
     }
 
     @RequestMapping(value = "/api/reader/addReader", method = RequestMethod.POST)
-    public @ResponseBody Object addReader(HttpServletRequest request, String name, String employeeId, String deptName, String phone) {
+    public @ResponseBody Object addReader(HttpServletRequest request, String name, String employeeId, String deptName, String phone, String password) {
         HashMap<String, String> res = new HashMap<>();
+        String readerId = request.getParameter("readerId");
 
-        long checkEmpId = readerInfoService.checkEmployeeId(employeeId);
+        long checkEmpId = readerInfoService.checkEmployeeId(employeeId, readerId);
         if (checkEmpId > 0) {
             res.put("stateCode", "-1");
-            res.put("msg", "管理员登陆成功！");
+            res.put("msg", "员工号重复，请重新输入！");
             return res;
         }
-        Object readerId = request.getParameter("readerId");
         if (readerId != null) {
-            //
-
+            // 编辑
+            long readerIdL = Long.parseLong(readerId);
+            ReaderInfo readerInfo = getReaderInfo(readerIdL, name, employeeId, deptName, phone);
+            if (readerInfoService.editReaderInfo(readerInfo) && readerInfoService.editReaderCard(readerInfo)) {
+                res.put("stateCode", "0");
+                res.put("msg", "读者信息修改成功！");
+            } else {
+                res.put("stateCode", "-1");
+                res.put("msg", "读者信息修改失败！");
+            }
         } else {
-
+            ReaderInfo readerInfo = getReaderInfo(0, name, employeeId, deptName, phone);
+            long readerIdL = readerInfoService.addReaderInfo(readerInfo);
+            readerInfo.setReaderId(readerIdL);
+            if (readerIdL > 0 && readerCardService.addReaderCard(readerInfo, password)) {
+                res.put("stateCode", "0");
+                res.put("msg", "添加读者信息成功！");
+            } else {
+                res.put("stateCode", "-1");
+                res.put("msg", "添加读者信息失败！");
+            }
         }
-
-
         return res;
     }
     @RequestMapping("reader_edit_do.html")

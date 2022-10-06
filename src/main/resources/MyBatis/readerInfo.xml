@@ -26,6 +26,9 @@
         select reader_id from reader_info where employee_id=#{employeeId} and `name`=#{name} and phone=#{phone}
     </select>
     <select id="checkEmployeeId" resultType="long" parameterType="String">
-        select count(employeeId) from reader_info where employee_id=#{employeeId}
+        select count(employee_id) from reader_info where employee_id=#{employeeId}
+        <if test="readerId!=null and readerId!=''">
+            and reader_id!=#{readerId}
+        </if>
     </select>
 </mapper>

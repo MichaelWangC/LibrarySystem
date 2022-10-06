@@ -13,7 +13,7 @@
         })
     </script>
 </head>
-<body background="img/book2.jpg">
+<body background="img/admin_bg.jpg">
 <div id="header" style="padding-bottom: 100px"></div>
 <div style="position: relative">
     <c:if test="${!empty succ}">

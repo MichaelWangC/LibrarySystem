@@ -18,11 +18,11 @@
         })
     </script>
 </head>
-<body background="img/sky.jpg">
+<body background="img/admin_bg.jpg">
 
 <div id="header"></div>
 <div style="position: relative;padding-top: 60px; width: 80%;margin-left: 10%">
-    <form action="book_add_do.html" method="post" id="addbook">
+    <form action="book_add_do.html" method="post" id="addbook" style="background: white;padding: 20px;">
         <div class="form-group">
             <label for="name">图书名</label>
             <input type="text" class="form-control" name="name" id="name" placeholder="请输入书名">

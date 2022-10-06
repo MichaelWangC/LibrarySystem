@@ -13,7 +13,7 @@
         })
     </script>
 </head>
-<body background="img/book1.jpg">
+<body background="img/admin_bg.jpg">
 
 <div id="header"></div>
 

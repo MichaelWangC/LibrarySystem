@@ -5,7 +5,7 @@
 <nav class="navbar navbar-default" role="navigation" style="background-color:#fff">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
-            <a class="navbar-brand " href="reader_main.html"><p class="text-primary" style="font-family: 华文行楷; font-size: 200%; ">我的图书馆</p></a>
+            <a class="navbar-brand " href="reader_main.html"><p style="color:#4a7098;font-family: 华文行楷; font-size: 200%; ">我的图书馆</p></a>
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
@@ -40,11 +40,12 @@
 
 <script>
     function selTab(index) {
+        if (!index) return
         var tabbarItems = document.getElementsByClassName("tabbar-item")
         var tabbarItem = tabbarItems[index]
         var activeItems = document.getElementsByClassName("active")
-        activeItems[0].classList.remove("active")
-        tabbarItem.classList.add("active")
+        activeItems.length>0?activeItems[0].classList.remove("active"):''
+        !!tabbarItem?tabbarItem.classList.add("active"):''
     }
 
     var index="<%=index%>";

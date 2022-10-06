@@ -13,7 +13,7 @@
         })
     </script>
 </head>
-<body background="img/u1.jpg">
+<body background="img/admin_bg.jpg">
 <div id="header"></div>
 <c:if test="${!empty info}">
     <script>alert("${info}");window.location.href="allreaders.html"</script>

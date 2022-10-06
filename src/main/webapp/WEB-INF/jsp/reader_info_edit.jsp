@@ -12,7 +12,7 @@
         })
     </script>
 </head>
-<body background="img/lizhi.jpg">
+<body background="img/reader_bg.jpg">
 <div id="header" style="padding-bottom: 80px"></div>
 <div class="col-xs-5 col-md-offset-3">
     <div class="panel panel-default">
@@ -22,7 +22,7 @@
             </h3>
         </div>
         <div class="panel-body">
-            <form action="reader_edit_do_r.html" method="post" id="edit" >
+            <div >
                 <div class="input-group">
                     <span  class="input-group-addon">读者证号</span>
                     <input type="text" readonly="readonly" class="form-control" name="readerId" id="readerId" value="${readerinfo.readerId}">
@@ -44,16 +44,38 @@
                     <input type="text" class="form-control" name="phone" id="phone"  value="${readerinfo.phone}" >
                 </div>
                 <br/>
-                <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
+<%--                <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">--%>
+                <button id="submitBtn" class="btn btn-success btn-sm" class="text-left">确定</button>
                 <script>
-                    $("#edit").submit(function () {
+                    $("#submitBtn").click(function () {
                         if($("#name").val()==''||$("#employeeId").val()==''||$("#deptName").val()==''||$("#phone").val()==''){
                             alert("请填入完整图书信息！");
                             return false;
                         }
+                        $.ajax({
+                            type: "POST",
+                            url: "api/reader/addReader",
+                            data: {
+                                readerId: ${readerinfo.readerId},
+                                name: $("#name").val(),
+                                employeeId: $("#employeeId").val(),
+                                deptName: $("#deptName").val(),
+                                phone: $("#phone").val()
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                alert(data.msg)
+                                if (data.stateCode == 0) {
+                                    window.location.replace("/reader_info.html")
+                                }
+                            },
+                            error: function (err) {
+                                alert(JSON.stringify(err))
+                            }
+                        })
                     })
                 </script>
-            </form>
+            </div>
         </div>
     </div>
 </div>

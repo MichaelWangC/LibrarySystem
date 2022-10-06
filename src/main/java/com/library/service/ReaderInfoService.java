@@ -40,7 +40,7 @@ public class ReaderInfoService {
         return readerInfoDao.getReaderId(readerInfo);
     }
 
-    public long checkEmployeeId(String employeeId) {
-        return readerInfoDao.checkEmployeeId(employeeId);
+    public long checkEmployeeId(String employeeId, String readerId) {
+        return readerInfoDao.checkEmployeeId(employeeId, readerId);
     }
 }

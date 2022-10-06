@@ -15,7 +15,7 @@
     <script src="js/bootstrap.min.js" ></script>
     <script src="js/js.cookie.js"></script>
 </head>
-<body background="img/timg.jpg">
+<body background="img/login_bg.jpg">
 
 <div class="col-xs-6 col-md-offset-3" style="padding-top: 100px;position: relative">
     <div class="panel panel-primary">
@@ -23,7 +23,7 @@
             <h3 class="panel-title">用户注册</h3>
         </div>
         <div class="panel-body">
-            <form action="register_add_do.html" method="post" id="registeredit" >
+            <div>
 
                 <div class="form-group" >
                     <label for="name">姓名</label>
@@ -51,13 +51,14 @@
                     <input type="text" class="form-control" name="phone" id="phone"  >
                 </div>
 
-                <input style="align-items: center;" type="submit" value="注册" class="btn btn-success btn-sm"
-                       class="text-left">
+<%--                <input style="align-items: center;" type="submit" value="注册" class="btn btn-success btn-sm"--%>
+<%--                       class="text-left">--%>
+                <button id="submitBtn" class="btn btn-success btn-sm" class="text-left">注册</button>
                 <script>
                     function mySubmit(flag){
                         return flag;
                     }
-                    $("#registeredit").submit(function () {
+                    $("#submitBtn").click(function () {
                         if($("#password").val()=='' || $("#passwordConfirm").val()=='' ||$("#name").val()==''||$("#employeeId").val()==''||$("#address").val()==''||$("#phone").val()==''){
                             alert("请填入完整读者信息！");
                             return mySubmit(false);
@@ -66,9 +67,30 @@
                             alert("密码两次输入不一致！");
                             return mySubmit(false);
                         }
+                        $.ajax({
+                            type: "POST",
+                            url: "api/reader/addReader",
+                            data: {
+                                name: $("#name").val(),
+                                employeeId: $("#employeeId").val(),
+                                deptName: $("#deptName").val(),
+                                phone: $("#phone").val(),
+                                password: $("#password").val()
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                alert(data.msg)
+                                if (data.stateCode == 0) {
+                                    window.location.replace("/")
+                                }
+                            },
+                            error: function (err) {
+                                alert(JSON.stringify(err))
+                            }
+                        })
                     })
                 </script>
-            </form>
+            </div>
         </div>
     </div>
 

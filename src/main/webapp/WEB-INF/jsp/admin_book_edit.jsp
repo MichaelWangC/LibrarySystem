@@ -14,7 +14,7 @@
         })
     </script>
 </head>
-<body background="../../static/img/book2.jpg">
+<body background="img/admin_bg.jpg">
 
 <div id="header" style="padding-bottom: 80px"></div>
 
