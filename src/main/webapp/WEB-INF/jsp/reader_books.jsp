@@ -71,8 +71,6 @@
                 <th>书名</th>
                 <th>作者</th>
                 <th>出版社</th>
-                <th>ISBN</th>
-                <th>价格</th>
                 <th>剩余数量</th>
                 <th>借还</th>
                 <th>详情</th>
@@ -84,8 +82,6 @@
                     <td><c:out value="${book.name}"></c:out></td>
                     <td><c:out value="${book.author}"></c:out></td>
                     <td><c:out value="${book.publish}"></c:out></td>
-                    <td><c:out value="${book.isbn}"></c:out></td>
-                    <td><c:out value="${book.price}"></c:out></td>
                     <td><c:out value="${book.number}"></c:out></td>
 
                     <c:set var="flag" value="false"/>
