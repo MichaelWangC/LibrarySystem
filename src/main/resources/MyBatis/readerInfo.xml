@@ -5,14 +5,13 @@
         select * from reader_info
     </select>
     <select id="findReaderInfoByReaderId" resultType="com.library.bean.ReaderInfo" parameterType="long">
-        select * from reader_info where reader_id = #{reader_id}
+        select * from reader_info a where reader_id = #{reader_id}
     </select>
     <delete id="deleteReaderInfo" parameterType="long">
         delete from reader_info where reader_id = #{reader_id}
     </delete>
     <update id="editReaderInfo" parameterType="com.library.bean.ReaderInfo">
-        update reader_info set name = #{name} , sex = #{sex},
-        birth = #{birth} ,address = #{address} ,phone = #{phone}
+        update reader_info set name = #{name}, dept_name = #{deptName}, employee_id = #{employeeId}, phone = #{phone}
         where reader_id = #{reader_id}
     </update>
     <update id="editReaderCard" parameterType="com.library.bean.ReaderInfo">
@@ -20,13 +19,13 @@
         where reader_id = #{reader_id}
     </update>
     <insert id="addReaderInfo" parameterType="com.library.bean.ReaderInfo">
-        insert into reader_info values
-        (null, #{name},#{sex},#{birth},#{address},#{phone})
+        insert into reader_info(`name`, phone, dept_name, employee_id) values
+        (#{name},#{phone},#{deptName},#{employeeId})
     </insert>
     <select id="getReaderId" resultType="long" parameterType="com.library.bean.ReaderInfo">
-        select reader_id from reader_info where
-        name = #{name} and sex = #{sex} and
-        birth = #{birth} and address = #{address}
-        and phone = #{phone}
+        select reader_id from reader_info where employee_id=#{employeeId} and `name`=#{name} and phone=#{phone}
+    </select>
+    <select id="checkEmployeeId" resultType="long" parameterType="String">
+        select count(employeeId) from reader_info where employee_id=#{employeeId}
     </select>
 </mapper>

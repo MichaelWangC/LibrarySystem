@@ -17,6 +17,7 @@ public class Book implements Serializable {
     private Date pub_date;
     private int class_id;
     private int number;
+    private String className;
 
     public long getBookId() {
         return book_id;
@@ -104,5 +105,13 @@ public class Book implements Serializable {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

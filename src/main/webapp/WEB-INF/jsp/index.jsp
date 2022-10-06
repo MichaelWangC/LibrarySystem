@@ -60,6 +60,8 @@ background-attachment: fixed;">
         <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
         <button id="loginButton"  class="btn btn-primary  btn-block">登陆
         </button>
+        <button id="registerButton"  class="btn btn-default btn-block">注册
+        </button>
     </div>
 </div>
     <script>
@@ -138,6 +140,10 @@ background-attachment: fixed;">
                     }
                 });
             }
+        })
+
+        $("#registerButton").click(function () {
+            window.location.href="register.html";
         })
 
     </script>

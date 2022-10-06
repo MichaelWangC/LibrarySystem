@@ -1,6 +1,7 @@
 package com.library.dao;
 
 import com.library.bean.Book;
+import com.library.bean.ClassInfo;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -45,5 +46,10 @@ public class BookDao {
 
     public int deleteBook(final long bookId) {
         return sqlSessionTemplate.delete(NAMESPACE + "deleteBook", bookId);
+    }
+
+    public ArrayList<ClassInfo> getClassInfo() {
+        List<ClassInfo> result = sqlSessionTemplate.selectList(NAMESPACE + "getClassInfo");
+        return (ArrayList<ClassInfo>)result;
     }
 }

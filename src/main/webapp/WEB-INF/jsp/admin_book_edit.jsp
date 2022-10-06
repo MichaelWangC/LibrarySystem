@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>编辑《 ${detail.name}》</title>
@@ -55,11 +57,24 @@ background-attachment: fixed;">
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">出版日期</span>
-                    <input type="date" class="form-control" name="pubstr" id="pubstr" value="${detail.pubdate}">
+                    <input type="month" class="form-control" name="pubstr" id="pubstr" value="<fmt:formatDate value="${detail.pubdate}" pattern="yyyy-MM" />">
                 </div>
                 <div class="input-group">
-                    <span  class="input-group-addon">分类号</span>
-                    <input type="text" class="form-control" name="classId" id="classId" value="${detail.classId}">
+                    <span  class="input-group-addon">图书分类</span>
+                    <div class="dropdown">
+                        <%--                <input type="text" class="form-control" name="classId" id="classId" placeholder="请输入分类号">--%>
+                        <button class="btn btn-default dropdown-toggle" type="button" id="classIdButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span id="className">${detail.className}</span>
+                            <input type="text" class="form-control" name="classId" id="classId" style="display: none;">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="classIdButton">
+                            <c:forEach items="${classInfos}" var="alog">
+                                <li><a onclick="classIdClick(this)" href="javascript:void(0)" value="<c:out value="${alog.classId}"></c:out>"><c:out value="${alog.className}"></c:out></a></li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+<%--                    <input type="text" class="form-control" name="classId" id="classId" value="${detail.className}">--%>
                 </div>
                 <div class="input-group">
                     <span  class="input-group-addon">数量</span>
@@ -68,11 +83,18 @@ background-attachment: fixed;">
                 <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
                 <script>
                     $("#addbook").submit(function () {
-                        if($("#name").val()==''||$("#author").val()==''||$("#publish").val()==''||$("#isbn").val()==''||$("#introduction").val()==''||$("#language").val()==''||$("#price").val()==''||$("#pubstr").val()==''||$("#classId").val()==''||$("#number").val()==''){
+                        if($("#name").val()==''||$("#author").val()==''||$("#publish").val()==''||$("#introduction").val()==''||$("#language").val()==''||$("#pubstr").val()==''||$("#classId").val()==''||$("#number").val()==''){
                             alert("请填入完整图书信息！");
                             return false;
                         }
                     })
+
+                    function classIdClick(e) {
+                        var value = $(e).attr('value')
+                        var valueName = $(e).html()
+                        $('#className').html(valueName)
+                        $('#classId').val(value)
+                    }
                 </script>
             </form>
         </div>

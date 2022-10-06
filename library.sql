@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS library;
 CREATE DATABASE library;
 USE library;
 
@@ -12,13 +13,13 @@ CREATE TABLE `book_info` (
 	`name` VARCHAR ( 20 ) NOT NULL,
 	`author` VARCHAR ( 15 ) NOT NULL,
 	`publish` VARCHAR ( 20 ) NOT NULL,
-	`ISBN` VARCHAR ( 15 ) NOT NULL,
+	`ISBN` VARCHAR ( 15 ),
 	`introduction` text,
 	`language` VARCHAR ( 4 ) NOT NULL,
-	`price` DECIMAL ( 10, 2 ) NOT NULL,
+	`price` DECIMAL ( 10, 2 ),
 	`pub_date` date NOT NULL,
 	`class_id` INT DEFAULT NULL,
-	`number` INT DEFAULT NULL 
+	`number` INT DEFAULT NULL
 ) ENGINE = INNODB DEFAULT CHARSET = utf8;
 ALTER TABLE `book_info` MODIFY `book_id` BIGINT NOT NULL AUTO_INCREMENT,
 AUTO_INCREMENT = 1;
@@ -68,7 +69,7 @@ CREATE TABLE `lend_list` (
 	`book_id` BIGINT NOT NULL,
 	`reader_id` BIGINT NOT NULL,
 	`lend_date` date DEFAULT NULL,
-	`back_date` date DEFAULT NULL 
+	`back_date` date DEFAULT NULL
 ) ENGINE = INNODB DEFAULT CHARSET = utf8;
 ALTER TABLE `lend_list` MODIFY `ser_num` BIGINT NOT NULL AUTO_INCREMENT,
 AUTO_INCREMENT = 1;
@@ -84,21 +85,25 @@ VALUES
 CREATE TABLE `reader_info` (
 	`reader_id` BIGINT NOT NULL PRIMARY KEY,
 	`name` VARCHAR ( 10 ) NOT NULL,
-	`sex` VARCHAR ( 2 ) NOT NULL,
-	`birth` date NOT NULL,
-	`address` VARCHAR ( 50 ) NOT NULL,
-	`phone` VARCHAR ( 15 ) NOT NULL 
+	`sex` VARCHAR ( 2 ) NOT NULL default '',
+	`birth` date,
+	`address` VARCHAR ( 50 ) NOT NULL default '',
+	`phone` VARCHAR ( 15 ) NOT NULL default '',
+	`dept_name` VARCHAR (50) NOT NULL default '',
+	`employee_id` VARCHAR (50) NOT NULL default '',
+	`creat_time` timestamp NOT NULL default CURRENT_TIMESTAMP
 ) ENGINE = INNODB DEFAULT CHARSET = utf8;
+
 ALTER TABLE `reader_info` MODIFY `reader_id` BIGINT NOT NULL AUTO_INCREMENT,
 AUTO_INCREMENT = 10000;
-INSERT INTO `reader_info` ( NAME, sex, birth, address, phone )
+INSERT INTO `reader_info` ( NAME, sex, address, phone )
 VALUES
-	( '张华', '男', '1995-06-10', '天津市', '12345678900' ),
-	( '王小伟', '男', '1996-02-01', '北京市', '12345678909' ),
-	( '王莞尔', '女', '1995-04-15', '浙江省杭州市', '12345678908' ),
-	( '张明华', '男', '1996-08-29', '陕西省西安市', '12345678907' ),
-	( '李一琛', '男', '1996-01-01', '陕西省西安市', '15123659875' ),
-	( '李二飞', '男', '1996-05-03', '山东省青岛市', '15369874123' );
+	( '张华', '男', '天津市', '12345678900' ),
+	( '王小伟', '男', '北京市', '12345678909' ),
+	( '王莞尔', '女', '浙江省杭州市', '12345678908' ),
+	( '张明华', '男', '陕西省西安市', '12345678907' ),
+	( '李一琛', '男', '陕西省西安市', '15123659875' ),
+	( '李二飞', '男', '山东省青岛市', '15369874123' );
 CREATE TABLE `reader_card` ( `reader_id` BIGINT NOT NULL PRIMARY KEY, `username` VARCHAR ( 15 ) NOT NULL, `password` VARCHAR ( 15 ) NOT NULL ) ENGINE = INNODB DEFAULT CHARSET = utf8;
 INSERT INTO `reader_card`
 VALUES

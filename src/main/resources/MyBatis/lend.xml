@@ -16,10 +16,10 @@
         update book_info set number = number - 1 where book_id = #{book_id}
     </update>
     <select id="lendList" resultType="com.library.bean.Lend">
-        select * from lend_list
+        select a.*, b.name as book_name, c.name as readerName, c.employee_id as employeeId from lend_list a, book_info b, reader_info c where a.book_id=b.book_id and a.reader_id=c.reader_id
     </select>
     <select id="myLendList" resultType="com.library.bean.Lend" parameterType="long">
-        select * from lend_list where reader_id = #{reader_id}
+        select a.*, b.name as book_name from lend_list a, book_info b where a.reader_id = #{reader_id} and b.book_id=a.book_id
     </select>
     <delete id="deleteLend" parameterType="long">
         delete from lend_list where ser_num = #{ser_num}

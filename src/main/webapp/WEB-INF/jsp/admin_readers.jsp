@@ -54,9 +54,8 @@ background-attachment: fixed;">
             <tr>
                 <th>读者号</th>
                 <th>姓名</th>
-                <th>性别</th>
-                <th>生日</th>
-                <th>地址</th>
+                <th>员工号</th>
+                <th>部门</th>
                 <th>电话</th>
                 <th>编辑</th>
                 <th>删除</th>
@@ -67,12 +66,11 @@ background-attachment: fixed;">
                 <tr>
                     <td><c:out value="${reader.readerId}"></c:out></td>
                     <td><c:out value="${reader.name}"></c:out></td>
-                    <td><c:out value="${reader.sex}"></c:out></td>
-                    <td><c:out value="${reader.birth}"></c:out></td>
-                    <td><c:out value="${reader.address}"></c:out></td>
+                    <td><c:out value="${reader.employeeId}"></c:out></td>
+                    <td><c:out value="${reader.deptName}"></c:out></td>
                     <td><c:out value="${reader.phone}"></c:out></td>
                     <td><a href="reader_edit.html?readerId=<c:out value="${reader.readerId}"></c:out>"><button type="button" class="btn btn-info btn-xs">编辑</button></a></td>
-                    <td><a href="reader_delete.html?readerId=<c:out value="${reader.readerId}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
+                    <td><a href="reader_delete.html?readerId=<c:out value="${reader.readerId}"></c:out>" onclick="javascript:return del()"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -80,4 +78,14 @@ background-attachment: fixed;">
     </div>
 </div>
 </body>
+<script>
+    function del() {
+        var msg = "您真的确定要删除吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 </html>

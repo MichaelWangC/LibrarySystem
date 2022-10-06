@@ -21,7 +21,7 @@ background-attachment: fixed;">
 <div style="padding: 70px 550px 10px">
     <form   method="post" action="querybook.html" class="form-inline"  id="searchform">
         <div class="input-group">
-           <input type="text" placeholder="输入图书名" class="form-control" id="search" name="searchWord" class="form-control">
+           <input type="text" placeholder="输入图书名" value="<c:out value="${searchWord}"></c:out>" class="form-control" id="search" name="searchWord" class="form-control">
             <span class="input-group-btn">
                             <input type="submit" value="搜索" class="btn btn-default">
             </span>
@@ -30,9 +30,10 @@ background-attachment: fixed;">
     <script>
         $("#searchform").submit(function () {
             var val=$("#search").val();
-            if(val==''){
-                alert("请输入关键字");
-                return false;
+            if(!val){
+                val = ''
+                // alert("请输入关键字");
+                // return false;
             }
         })
     </script>
@@ -70,8 +71,6 @@ background-attachment: fixed;">
                 <th>书名</th>
                 <th>作者</th>
                 <th>出版社</th>
-                <th>ISBN</th>
-                <th>价格</th>
                 <th>剩余数量</th>
                 <th>详情</th>
                 <th>编辑</th>
@@ -84,8 +83,6 @@ background-attachment: fixed;">
                 <td><c:out value="${book.name}"></c:out></td>
                 <td><c:out value="${book.author}"></c:out></td>
                 <td><c:out value="${book.publish}"></c:out></td>
-                <td><c:out value="${book.isbn}"></c:out></td>
-                <td><c:out value="${book.price}"></c:out></td>
                 <td><c:out value="${book.number}"></c:out></td>
                 <td><a href="admin_book_detail.html?bookId=<c:out value="${book.bookId}"></c:out>">
                     <button type="button" class="btn btn-success btn-xs">详情</button>

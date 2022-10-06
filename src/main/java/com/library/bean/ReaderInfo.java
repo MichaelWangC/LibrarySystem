@@ -11,6 +11,8 @@ public class ReaderInfo implements Serializable {
     private Date birth;
     private String address;
     private String phone;
+    private String employeeId;
+    private String deptName;
 
     public long getReaderId() {
         return reader_id;
@@ -60,4 +62,19 @@ public class ReaderInfo implements Serializable {
         this.phone = phone;
     }
 
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
 }

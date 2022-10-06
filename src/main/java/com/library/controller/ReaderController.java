@@ -28,21 +28,13 @@ public class ReaderController {
     @Autowired
     private ReaderCardService readerCardService;
 
-    private ReaderInfo getReaderInfo(long readerId, String name, String sex, String birth, String address, String phone) {
+    private ReaderInfo getReaderInfo(long readerId, String name, String employeeId, String deptName, String phone) {
         ReaderInfo readerInfo = new ReaderInfo();
-        Date date = new Date();
-        try {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            date = df.parse(birth);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        readerInfo.setAddress(address);
         readerInfo.setName(name);
         readerInfo.setReaderId(readerId);
         readerInfo.setPhone(phone);
-        readerInfo.setSex(sex);
-        readerInfo.setBirth(date);
+        readerInfo.setEmployeeId(employeeId);
+        readerInfo.setDeptName(deptName);
         return readerInfo;
     }
 
@@ -84,9 +76,9 @@ public class ReaderController {
     }
 
     @RequestMapping("reader_edit_do.html")
-    public String readerInfoEditDo(HttpServletRequest request, String name, String sex, String birth, String address, String phone, RedirectAttributes redirectAttributes) {
+    public String readerInfoEditDo(HttpServletRequest request, String name, String employeeId, String deptName, String phone, RedirectAttributes redirectAttributes) {
         long readerId = Long.parseLong(request.getParameter("readerId"));
-        ReaderInfo readerInfo = getReaderInfo(readerId, name, sex, birth, address, phone);
+        ReaderInfo readerInfo = getReaderInfo(readerId, name, employeeId, deptName, phone);
         if (readerInfoService.editReaderInfo(readerInfo) && readerInfoService.editReaderCard(readerInfo)) {
             redirectAttributes.addFlashAttribute("succ", "读者信息修改成功！");
         } else {
@@ -101,14 +93,15 @@ public class ReaderController {
     }
 
     @RequestMapping("reader_add_do.html")
-    public String readerInfoAddDo(String name, String sex, String birth, String address, String phone, String password, RedirectAttributes redirectAttributes) {
-        ReaderInfo readerInfo = getReaderInfo(0, name, sex, birth, address, phone);
+    public String readerInfoAddDo(String name, String employeeId, String deptName, String phone, String password, RedirectAttributes redirectAttributes) {
+        ReaderInfo readerInfo = getReaderInfo(0, name, employeeId, deptName, phone);
+//        long checkEmpId = readerInfoService.checkEmployeeId(employeeId);
         long readerId = readerInfoService.addReaderInfo(readerInfo);
         readerInfo.setReaderId(readerId);
         if (readerId > 0 && readerCardService.addReaderCard(readerInfo, password)) {
             redirectAttributes.addFlashAttribute("succ", "添加读者信息成功！");
         } else {
-            redirectAttributes.addFlashAttribute("succ", "添加读者信息失败！");
+            redirectAttributes.addFlashAttribute("fail", "添加读者信息失败！");
         }
         return "redirect:/allreaders.html";
     }
@@ -123,9 +116,9 @@ public class ReaderController {
     }
 
     @RequestMapping("reader_edit_do_r.html")
-    public String readerInfoEditDoReader(HttpServletRequest request, String name, String sex, String birth, String address, String phone, RedirectAttributes redirectAttributes) {
+    public String readerInfoEditDoReader(HttpServletRequest request, String name, String employeeId, String deptName, String phone, RedirectAttributes redirectAttributes) {
         ReaderCard readerCard = (ReaderCard) request.getSession().getAttribute("readercard");
-        ReaderInfo readerInfo = getReaderInfo(readerCard.getReaderId(), name, sex, birth, address, phone);
+        ReaderInfo readerInfo = getReaderInfo(readerCard.getReaderId(), name, employeeId, deptName, phone);
         if (readerInfoService.editReaderInfo(readerInfo) && readerInfoService.editReaderCard(readerInfo)) {
             ReaderCard readerCardNew = loginService.findReaderCardByReaderId(readerCard.getReaderId());
             request.getSession().setAttribute("readercard", readerCardNew);

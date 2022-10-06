@@ -33,16 +33,12 @@ background-attachment: fixed;">
                     <input type="text" class="form-control" name="name" id="name" value="${readerinfo.name}" >
                 </div>
                 <div class="input-group">
-                    <span  class="input-group-addon">性别</span>
-                    <input type="text" class="form-control" name="sex" id="sex"  value="${readerinfo.sex}" >
+                    <span  class="input-group-addon">工号</span>
+                    <input type="text" class="form-control" name="employeeId" id="employeeId"  value="${readerinfo.employeeId}" >
                 </div>
                 <div class="input-group">
-                    <span class="input-group-addon">生日</span>
-                    <input type="text" class="form-control" name="birth" id="birth"  value="${readerinfo.birth}" >
-                </div>
-                <div class="input-group">
-                    <span  class="input-group-addon">地址</span>
-                    <input type="text" class="form-control" name="address" id="address"  value="${readerinfo.address}" >
+                    <span class="input-group-addon">部门</span>
+                    <input type="text" class="form-control" name="deptName" id="deptName"  value="${readerinfo.deptName}" >
                 </div>
                 <div class="input-group">
                     <span  class="input-group-addon">电话</span>
@@ -52,7 +48,7 @@ background-attachment: fixed;">
                 <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
                 <script>
                     $("#edit").submit(function () {
-                        if($("#name").val()==''||$("#sex").val()==''||$("#birth").val()==''||$("#address").val()==''||$("#phone").val()==''){
+                        if($("#name").val()==''||$("#employeeId").val()==''||$("#deptName").val()==''||$("#phone").val()==''){
                             alert("请填入完整图书信息！");
                             return false;
                         }

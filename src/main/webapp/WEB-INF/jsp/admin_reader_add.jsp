@@ -23,28 +23,29 @@ background-attachment: fixed;">
         </div>
         <div class="panel-body">
             <form action="reader_add_do.html" method="post" id="readeredit" >
-                <div class="input-group" style="padding-top: 20px;">
-                    <span  class="input-group-addon">密码</span>
-                    <input  type="password" class="form-control" name="password" id="password" ">
+                <div class="form-group" >
+                    <label for="name">姓名</label>
+                    <input type="text" class="form-control" name="name" id="name"  placeholder="请输入姓名">
                 </div>
-                <div class="input-group" style="padding-top: 20px;">
-                    <span class="input-group-addon">姓名</span>
-                    <input type="text" class="form-control" name="name" id="name"  >
+                <div class="form-group">
+                    <label for="employeeId">员工号</label>
+                    <input type="text" class="form-control" name="employeeId" id="employeeId" laceholder="请输入员工号">
                 </div>
-                <div class="input-group" style="padding-top: 20px;">
-                    <span  class="input-group-addon">性别</span>
-                    <input type="text" class="form-control" name="sex" id="sex" >
+                <div class="form-group">
+                    <label  for="password">密码</label>
+                    <input  type="password" class="form-control" name="password" id="password">
                 </div>
-                <div class="input-group" style="padding-top: 20px;">
-                    <span class="input-group-addon">生日</span>
-                    <input type="date" class="form-control" name="birth" id="birth"  >
+                <div class="form-group">
+                    <label  for="passwordConfirm">密码确认</label>
+                    <input  type="password" class="form-control" name="passwordConfirm" id="passwordConfirm">
                 </div>
-                <div class="input-group" style="padding-top: 20px;">
-                    <span  class="input-group-addon">地址</span>
-                    <input type="text" class="form-control" name="address" id="address"  >
+
+                <div class="form-group">
+                    <label  for="deptName">部门</label>
+                    <input type="text" class="form-control" name="deptName" id="deptName" >
                 </div>
-                <div class="input-group" style="padding-top: 20px;">
-                    <span class="input-group-addon">电话</span>
+                <div class="form-group" >
+                    <label for="phone">电话</label>
                     <input type="text" class="form-control" name="phone" id="phone"  >
                 </div>
                 <input style="align-items: center" type="submit" value="添加" class="btn btn-success btn-sm"
@@ -54,8 +55,12 @@ background-attachment: fixed;">
                         return flag;
                     }
                     $("#readeredit").submit(function () {
-                        if($("#password").val()==''||$("#name").val()==''||$("#sex").val()==''||$("#birth").val()==''||$("#address").val()==''||$("#phone").val()==''){
+                        if($("#password").val()=='' || $("#passwordConfirm").val()=='' ||$("#name").val()==''||$("#employeeId").val()==''||$("#address").val()==''||$("#phone").val()==''){
                             alert("请填入完整读者信息！");
+                            return mySubmit(false);
+                        }
+                        if ($("#password").val() != $("#passwordConfirm").val() ) {
+                            alert("密码两次输入不一致！");
                             return mySubmit(false);
                         }
                     })

@@ -52,16 +52,12 @@ background-attachment: fixed;">
                     <td>${readerinfo.name}</td>
                 </tr>
                 <tr>
-                    <th>性别</th>
-                    <td>${readerinfo.sex}</td>
+                    <th>工号</th>
+                    <td>${readerinfo.employeeId}</td>
                 </tr>
                 <tr>
-                    <th>生日</th>
-                    <td>${readerinfo.birth}</td>
-                </tr>
-                <tr>
-                    <th>地址</th>
-                    <td>${readerinfo.address}</td>
+                    <th>部门</th>
+                    <td>${readerinfo.deptName}</td>
                 </tr>
                 <tr>
                     <th>电话</th>

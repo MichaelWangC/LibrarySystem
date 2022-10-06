@@ -37,10 +37,20 @@ public class ReaderInfoDao {
     }
 
     public final long addReaderInfo(final ReaderInfo readerInfo) {
-        if (sqlSessionTemplate.insert(NAMESPACE + "addReaderInfo", readerInfo) > 0) {
-            return sqlSessionTemplate.selectOne(NAMESPACE + "getReaderId", readerInfo);
-        } else {
-            return -1;
+        long resId = sqlSessionTemplate.insert(NAMESPACE + "addReaderInfo", readerInfo);
+        if (resId > 0) {
+            return getReaderId(readerInfo);
         }
+        return resId;
+    }
+
+    public final long getReaderId(final ReaderInfo readerInfo) {
+        long readid = sqlSessionTemplate.selectOne(NAMESPACE + "getReaderId", readerInfo);
+        return readid;
+    }
+
+    public final long checkEmployeeId(String employeeId) {
+        long readid = sqlSessionTemplate.selectOne(NAMESPACE + "checkEmployeeId", employeeId);
+        return readid;
     }
 }

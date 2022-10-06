@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -55,11 +56,11 @@ background-attachment: fixed;">
                 </tr>
                 <tr>
                     <th>出版日期</th>
-                    <td>${detail.pubdate}</td>
+                    <td><fmt:formatDate value="${detail.pubdate}" pattern="yyyy-MM" /></td>
                 </tr>
                 <tr>
-                    <th>分类号</th>
-                    <td>${detail.classId}</td>
+                    <th>图书分类</th>
+                    <td>${detail.className}</td>
                 </tr>
                 <tr>
                     <th>数量</th>

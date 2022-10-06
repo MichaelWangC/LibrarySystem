@@ -2,9 +2,13 @@ package com.library.controller;
 
 import com.library.bean.Admin;
 import com.library.bean.ReaderCard;
+import com.library.bean.ReaderInfo;
 import com.library.service.LoginService;
+import com.library.service.ReaderCardService;
+import com.library.service.ReaderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,13 +23,16 @@ import java.util.HashMap;
 public class LoginController {
 
     private LoginService loginService;
-
-
     @Autowired
     public void setLoginService(LoginService loginService) {
         this.loginService = loginService;
     }
 
+    @Autowired
+    private ReaderInfoService readerInfoService;
+
+    @Autowired
+    private ReaderCardService readerCardService;
 
     @RequestMapping(value = {"/", "/login.html"})
     public String toLogin(HttpServletRequest request) {
@@ -60,7 +67,7 @@ public class LoginController {
             res.put("stateCode", "1");
             res.put("msg", "管理员登陆成功！");
         } else if (isReader) {
-            ReaderCard readerCard = loginService.findReaderCardByReaderId(id);
+            ReaderCard readerCard = loginService.findReaderCardByEmployeeId(id);
             request.getSession().setAttribute("readercard", readerCard);
             res.put("stateCode", "2");
             res.put("msg", "读者登陆成功！");
@@ -84,6 +91,28 @@ public class LoginController {
     @RequestMapping("/admin_repasswd.html")
     public ModelAndView reAdminPasswd() {
         return new ModelAndView("admin_repasswd");
+    }
+
+    @RequestMapping("/register.html")
+    public ModelAndView register() {
+        return new ModelAndView("register");
+    }
+
+    @RequestMapping("register_add_do.html")
+    public String registerAddDo(String name, String employeeId, String deptName, String phone, String password, RedirectAttributes redirectAttributes) {
+        ReaderInfo readerInfo = new ReaderInfo();
+        readerInfo.setName(name);
+        readerInfo.setDeptName(deptName);
+        readerInfo.setPhone(phone);
+        readerInfo.setEmployeeId(employeeId);
+        long readerId = readerInfoService.addReaderInfo(readerInfo);
+        readerInfo.setReaderId(readerId);
+        if (readerId > 0 && readerCardService.addReaderCard(readerInfo, password)) {
+            redirectAttributes.addFlashAttribute("succ", "信息注册成功！");
+        } else {
+            redirectAttributes.addFlashAttribute("fail", "信息注册失败！");
+        }
+        return "redirect:/login.html";
     }
 
     @RequestMapping("/admin_repasswd_do")

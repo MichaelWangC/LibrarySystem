@@ -35,4 +35,12 @@ public class ReaderInfoService {
     public long addReaderInfo(ReaderInfo readerInfo) {
         return readerInfoDao.addReaderInfo(readerInfo);
     }
+
+    public long getReaderId(ReaderInfo readerInfo) {
+        return readerInfoDao.getReaderId(readerInfo);
+    }
+
+    public long checkEmployeeId(String employeeId) {
+        return readerInfoDao.checkEmployeeId(employeeId);
+    }
 }

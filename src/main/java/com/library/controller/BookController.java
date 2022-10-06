@@ -27,7 +27,7 @@ public class BookController {
 
     private Date getDate(String pubstr) {
         try {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM");
             return df.parse(pubstr);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -37,14 +37,15 @@ public class BookController {
 
     @RequestMapping("/querybook.html")
     public ModelAndView queryBookDo(String searchWord) {
+        ModelAndView modelAndView = new ModelAndView("admin_books");
+        modelAndView.addObject("searchWord", searchWord);
         if (bookService.matchBook(searchWord)) {
             ArrayList<Book> books = bookService.queryBook(searchWord);
-            ModelAndView modelAndView = new ModelAndView("admin_books");
             modelAndView.addObject("books", books);
-            return modelAndView;
         } else {
-            return new ModelAndView("admin_books", "error", "没有匹配的图书");
+            modelAndView = new ModelAndView("admin_books", "error", "没有匹配的图书");
         }
+        return modelAndView;
     }
 
     @RequestMapping("/reader_querybook_do.html")
@@ -69,7 +70,9 @@ public class BookController {
 
     @RequestMapping("/book_add.html")
     public ModelAndView addBook() {
-        return new ModelAndView("admin_book_add");
+        ModelAndView modelAndView = new ModelAndView("admin_book_add");
+        modelAndView.addObject("classInfos", bookService.getClassInfo());
+        return modelAndView;
     }
 
     @RequestMapping("/book_add_do.html")
@@ -89,6 +92,7 @@ public class BookController {
         Book book = bookService.getBook(bookId);
         ModelAndView modelAndView = new ModelAndView("admin_book_edit");
         modelAndView.addObject("detail", book);
+        modelAndView.addObject("classInfos", bookService.getClassInfo());
         return modelAndView;
     }
 

@@ -18,16 +18,17 @@
     </select>
     <select id="queryBook" resultType="com.library.bean.Book" parameterType="String">
         select * from book_info where name like #{search}
-        or author like #{search} or introduction like #{search}
     </select>
     <select id="matchBook" resultType="int" parameterType="String">
         select count(*) from book_info where name like #{search}
-        or author like #{search} or introduction like #{search}
     </select>
     <select id="getBook" resultType="com.library.bean.Book" parameterType="long">
-        select * from book_info where book_id = #{book_id}
+        select a.*, b.class_name from book_info a, class_info b where a.book_id = #{book_id} and a.class_id=b.class_id
     </select>
     <delete id="deleteBook" parameterType="long">
         delete from book_info where book_id = #{book_id}
     </delete>
+    <select id="getClassInfo" resultType="com.library.bean.ClassInfo">
+        select * from class_info
+    </select>
 </mapper>

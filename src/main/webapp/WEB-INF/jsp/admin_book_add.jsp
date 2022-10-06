@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>图书信息添加</title>
@@ -54,11 +55,24 @@ background-attachment: fixed;">
         </div>
         <div class="form-group">
             <label for="pubstr">出版日期</label>
-            <input type="date" class="form-control" name="pubstr" id="pubstr" placeholder="请输入出版日期">
+            <input type="month" class="form-control" name="pubstr" id="pubstr" placeholder="请输入出版日期">
         </div>
         <div class="form-group">
-            <label for="classId">分类号</label>
-            <input type="text" class="form-control" name="classId" id="classId" placeholder="请输入分类号">
+            <label for="classId">图书分类</label>
+            <div class="dropdown">
+<%--                <input type="text" class="form-control" name="classId" id="classId" placeholder="请输入分类号">--%>
+                <button class="btn btn-default dropdown-toggle" type="button" id="classIdButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span id="className">请选择图书分类</span>
+                    <input type="text" class="form-control" name="classId" id="classId" style="display: none;">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="classIdButton">
+                    <c:forEach items="${classInfos}" var="alog">
+                        <li><a onclick="classIdClick(this)" href="javascript:void(0)" value="<c:out value="${alog.classId}"></c:out>"><c:out value="${alog.className}"></c:out></a></li>
+                    </c:forEach>
+                </ul>
+            </div>
+
         </div>
         <div class="form-group">
             <label for="number">数量</label>
@@ -68,11 +82,19 @@ background-attachment: fixed;">
         <input type="submit" value="添加" class="btn btn-success btn-sm" class="text-left">
         <script>
             $("#addbook").submit(function () {
-                if ($("#name").val() == '' || $("#author").val() == '' || $("#publish").val() == '' || $("#isbn").val() == '' || $("#introduction").val() == '' || $("#language").val() == '' || $("#price").val() == '' || $("#pubstr").val() == '' || $("#classId").val() == '' || $("#pressmark").val() == '' || $("#number").val() == '') {
+                if ($("#name").val() == '' || $("#author").val() == '' || $("#publish").val() == '' || $("#introduction").val() == '' || $("#language").val() == '' || $("#pubstr").val() == '' || $("#classId").val() == '' || $("#pressmark").val() == '' || $("#number").val() == '') {
                     alert("请填入完整图书信息！");
                     return false;
                 }
             })
+
+            function classIdClick(e) {
+                var value = $(e).attr('value')
+                var valueName = $(e).html()
+                $('#className').html(valueName)
+                $('#classId').val(value)
+            }
+
         </script>
     </form>
 </div>

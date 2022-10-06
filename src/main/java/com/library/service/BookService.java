@@ -1,6 +1,7 @@
 package com.library.service;
 
 import com.library.bean.Book;
+import com.library.bean.ClassInfo;
 import com.library.dao.BookDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,4 +41,7 @@ public class BookService {
         return bookDao.deleteBook(bookId) > 0;
     }
 
+    public ArrayList<ClassInfo> getClassInfo() {
+        return bookDao.getClassInfo();
+    }
 }
