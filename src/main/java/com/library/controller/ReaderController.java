@@ -8,6 +8,8 @@ import com.library.service.ReaderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -16,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 @Controller
 public class ReaderController {
@@ -75,6 +78,27 @@ public class ReaderController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/api/reader/addReader", method = RequestMethod.POST)
+    public @ResponseBody Object addReader(HttpServletRequest request, String name, String employeeId, String deptName, String phone) {
+        HashMap<String, String> res = new HashMap<>();
+
+        long checkEmpId = readerInfoService.checkEmployeeId(employeeId);
+        if (checkEmpId > 0) {
+            res.put("stateCode", "-1");
+            res.put("msg", "管理员登陆成功！");
+            return res;
+        }
+        Object readerId = request.getParameter("readerId");
+        if (readerId != null) {
+            //
+
+        } else {
+
+        }
+
+
+        return res;
+    }
     @RequestMapping("reader_edit_do.html")
     public String readerInfoEditDo(HttpServletRequest request, String name, String employeeId, String deptName, String phone, RedirectAttributes redirectAttributes) {
         long readerId = Long.parseLong(request.getParameter("readerId"));
@@ -95,7 +119,6 @@ public class ReaderController {
     @RequestMapping("reader_add_do.html")
     public String readerInfoAddDo(String name, String employeeId, String deptName, String phone, String password, RedirectAttributes redirectAttributes) {
         ReaderInfo readerInfo = getReaderInfo(0, name, employeeId, deptName, phone);
-//        long checkEmpId = readerInfoService.checkEmployeeId(employeeId);
         long readerId = readerInfoService.addReaderInfo(readerInfo);
         readerInfo.setReaderId(readerId);
         if (readerId > 0 && readerCardService.addReaderCard(readerInfo, password)) {

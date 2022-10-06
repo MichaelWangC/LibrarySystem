@@ -35,6 +35,14 @@
                 // return false;
             }
         })
+        function del() {
+            var msg = "您真的确定要删除吗？\n\n请确认！";
+            if (confirm(msg)==true){
+                return true;
+            }else{
+                return false;
+            }
+        }
     </script>
 </div>
 <div style="position: relative;top: 10%">
@@ -87,7 +95,7 @@
                     <button type="button" class="btn btn-success btn-xs">详情</button>
                 </a></td>
                 <td><a href="updatebook.html?bookId=<c:out value="${book.bookId}"></c:out>"><button type="button" class="btn btn-info btn-xs">编辑</button></a></td>
-                <td><a href="deletebook.html?bookId=<c:out value="${book.bookId}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
+                <td><a href="deletebook.html?bookId=<c:out value="${book.bookId}"></c:out>" onclick="javascript:return del()"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
             </tr>
             </c:forEach>
             </tbody>

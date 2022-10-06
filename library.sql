@@ -10,12 +10,12 @@ VALUES
 	( 123456, '123456', 'admin' );
 CREATE TABLE `book_info` (
 	`book_id` BIGINT NOT NULL PRIMARY KEY,
-	`name` VARCHAR ( 20 ) NOT NULL,
-	`author` VARCHAR ( 15 ) NOT NULL,
+	`name` VARCHAR ( 200 ) NOT NULL,
+	`author` VARCHAR ( 50 ) NOT NULL,
 	`publish` VARCHAR ( 20 ) NOT NULL,
-	`ISBN` VARCHAR ( 15 ),
+	`ISBN` VARCHAR ( 50 ),
 	`introduction` text,
-	`language` VARCHAR ( 4 ) NOT NULL,
+	`language` VARCHAR ( 20 ) NOT NULL,
 	`price` DECIMAL ( 10, 2 ),
 	`pub_date` date NOT NULL,
 	`class_id` INT DEFAULT NULL,
