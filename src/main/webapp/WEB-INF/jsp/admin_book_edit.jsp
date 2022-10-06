@@ -65,7 +65,7 @@ background-attachment: fixed;">
                         <%--                <input type="text" class="form-control" name="classId" id="classId" placeholder="请输入分类号">--%>
                         <button class="btn btn-default dropdown-toggle" type="button" id="classIdButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span id="className">${detail.className}</span>
-                            <input type="text" class="form-control" name="classId" id="classId" style="display: none;">
+                            <input type="text" class="form-control" name="classId" id="classId" style="display: none;" value="${detail.classId}">
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="classIdButton">
@@ -74,7 +74,6 @@ background-attachment: fixed;">
                             </c:forEach>
                         </ul>
                     </div>
-<%--                    <input type="text" class="form-control" name="classId" id="classId" value="${detail.className}">--%>
                 </div>
                 <div class="input-group">
                     <span  class="input-group-addon">数量</span>

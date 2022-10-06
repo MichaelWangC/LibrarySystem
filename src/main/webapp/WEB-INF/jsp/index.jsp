@@ -9,7 +9,6 @@
     <script src="js/js.cookie.js"></script>
     <style>
         #login{
-           height: 50%;
             width: 28%;
             margin-left: auto;
             margin-right: auto;
