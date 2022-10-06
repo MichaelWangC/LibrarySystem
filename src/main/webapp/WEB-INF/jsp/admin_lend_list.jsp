@@ -14,9 +14,7 @@
         })
     </script>
 </head>
-<body background="img/admin_bg.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body background="img/admin_bg.jpg">
 <div id="header"></div>
 
 <div style="position: relative;padding-top: 100px">

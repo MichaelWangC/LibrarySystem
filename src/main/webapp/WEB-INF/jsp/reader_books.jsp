@@ -59,7 +59,7 @@
     </c:if>
 </div>
 <div class="panel panel-default" style="width: 90%;margin-left: 5%">
-    <div class="panel-heading" style="background-color: #fff">
+    <div class="panel-heading">
         <h3 class="panel-title">
             全部图书
         </h3>
