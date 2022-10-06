@@ -8,7 +8,7 @@
     <select id="findReaderByReaderId" resultType="com.library.bean.ReaderCard" parameterType="long">
         select * from reader_card where reader_id = #{reader_id}
     </select>
-    <select id="findReaderCardByEmployeeId" resultType="com.library.bean.ReaderCard" parameterType="long">
+    <select id="findReaderCardByEmployeeId" resultType="com.library.bean.ReaderCard" parameterType="String">
         select a.* from reader_card a, reader_info b where b.employee_id = #{employee_id} and b.reader_id=a.reader_id
     </select>
     <update id="resetPassword">

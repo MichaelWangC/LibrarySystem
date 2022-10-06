@@ -78,7 +78,7 @@
                 <th>书名</th>
                 <th>作者</th>
                 <th>出版社</th>
-                <th>剩余数量</th>
+                <th width="120px">剩余数量</th>
                 <th>详情</th>
                 <th>编辑</th>
                 <th>删除</th>
