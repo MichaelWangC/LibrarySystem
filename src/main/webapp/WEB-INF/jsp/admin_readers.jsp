@@ -4,6 +4,7 @@
 <head>
     <title>全部读者</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
     <script>
@@ -12,9 +13,7 @@
         })
     </script>
 </head>
-<body background="img/u1.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body background="img/u1.jpg">
 <div id="header"></div>
 <c:if test="${!empty info}">
     <script>alert("${info}");window.location.href="allreaders.html"</script>
@@ -42,7 +41,7 @@ background-attachment: fixed;">
 </div>
 
 
-<div class="panel panel-default" style="position:relative;top: 80px;width: 90%;margin-left: 5%">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
             全部读者

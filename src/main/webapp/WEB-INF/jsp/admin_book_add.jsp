@@ -4,6 +4,7 @@
 <head>
     <title>图书信息添加</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
@@ -17,9 +18,7 @@
         })
     </script>
 </head>
-<body background="img/sky.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body background="img/sky.jpg">
 
 <div id="header"></div>
 <div style="position: relative;padding-top: 60px; width: 80%;margin-left: 10%">

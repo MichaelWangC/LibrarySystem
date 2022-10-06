@@ -10,13 +10,12 @@
 <head>
     <title>用户注册</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
     <script src="js/js.cookie.js"></script>
 </head>
-<body background="img/timg.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body background="img/timg.jpg">
 
 <div class="col-xs-6 col-md-offset-3" style="padding-top: 100px;position: relative">
     <div class="panel panel-primary">

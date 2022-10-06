@@ -4,17 +4,16 @@
 <head>
     <title>${readercard.name}的主页</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
     <script>
         $(function () {
-            $('#header').load('reader_header.html');
+            $('#header').load('reader_header.html', {index: 1});
         })
     </script>
 </head>
-<body background="img/lizhi.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body background="img/lizhi.jpg">
 <div id="header" style="padding-bottom: 80px"></div>
 <c:if test="${!empty succ}">
     <div class="alert alert-success alert-dismissable">

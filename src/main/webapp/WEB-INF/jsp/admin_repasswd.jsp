@@ -4,6 +4,7 @@
 <head>
     <title>更改密码</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
@@ -12,9 +13,7 @@
         })
     </script>
 </head>
-<body background="img/book2.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body background="img/book2.jpg">
 <div id="header" style="padding-bottom: 100px"></div>
 <div style="position: relative">
     <c:if test="${!empty succ}">

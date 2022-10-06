@@ -3,6 +3,7 @@
 <head>
     <title>编辑读者信息《 ${readerInfo.readerId}》</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
     <script>
@@ -11,9 +12,7 @@
         })
     </script>
 </head>
-<body background="img/book2.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body background="img/book2.jpg">
 <div id="header" style="padding-bottom: 80px"></div>
 <div class="col-xs-6 col-md-offset-3" style="position: relative;">
     <div class="panel panel-primary">

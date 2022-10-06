@@ -5,17 +5,16 @@
 <head>
     <title>全部图书信息</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
         $(function () {
-            $('#header').load('reader_header.html');
+            $('#header').load('reader_header.html', {index: 0});
         })
     </script>
 </head>
-<body background="img/lizhi.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body background="img/lizhi.jpg">
 
 <div id="header"></div>
 

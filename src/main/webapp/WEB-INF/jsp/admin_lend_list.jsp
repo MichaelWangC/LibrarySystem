@@ -5,6 +5,7 @@
 <head>
     <title>借还日志</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
@@ -38,7 +39,7 @@ background-attachment: fixed;">
         </div>
     </c:if>
 </div>
-<div class="panel panel-default" style="width: 90%;margin-left: 5%">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
             借还日志
