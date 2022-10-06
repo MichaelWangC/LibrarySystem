@@ -14,7 +14,7 @@
         })
     </script>
 </head>
-<body background="img/admin_bg.jpeg" style=" background-repeat:no-repeat ;
+<body background="img/admin_bg.jpg" style=" background-repeat:no-repeat ;
 background-size:100% 100%;
 background-attachment: fixed;">
 <div id="header"></div>
@@ -39,7 +39,7 @@ background-attachment: fixed;">
         </div>
     </c:if>
 </div>
-<div class="panel panel-default">
+<div class="panel panel-default" style="width: 90%;margin-left: 5%">
     <div class="panel-heading">
         <h3 class="panel-title">
             借还日志

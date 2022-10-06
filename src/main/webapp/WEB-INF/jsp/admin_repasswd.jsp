@@ -37,7 +37,7 @@
 </div>
 <div class="col-xs-6 col-md-offset-3" style="position: relative;">
     <div class="panel panel-primary ">
-        <div class="panel-heading">
+        <div class="panel-heading" style="background-color: #4a7098;">
             <h3 class="panel-title">密码修改</h3>
         </div>
         <div class="panel-body">

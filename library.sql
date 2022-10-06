@@ -4,10 +4,10 @@ USE library;
 
 SET NAMES utf8;
 START TRANSACTION;
-CREATE TABLE `admin` ( `admin_id` BIGINT NOT NULL PRIMARY KEY, `password` VARCHAR ( 15 ) NOT NULL, `username` VARCHAR ( 15 ) DEFAULT NULL ) ENGINE = INNODB DEFAULT CHARSET = utf8;
+CREATE TABLE `admin` ( `admin_id` VARCHAR ( 15 ) NOT NULL PRIMARY KEY, `password` VARCHAR ( 15 ) NOT NULL, `username` VARCHAR ( 15 ) DEFAULT NULL ) ENGINE = INNODB DEFAULT CHARSET = utf8;
 INSERT INTO `admin`
 VALUES
-	( 123456, '123456', 'admin' );
+	( 'admin', '123456', 'admin' );
 CREATE TABLE `book_info` (
 	`book_id` BIGINT NOT NULL PRIMARY KEY,
 	`name` VARCHAR ( 200 ) NOT NULL,

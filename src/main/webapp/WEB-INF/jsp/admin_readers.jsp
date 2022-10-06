@@ -19,7 +19,7 @@
     <script>alert("${info}");window.location.href="allreaders.html"</script>
 </c:if>
 
-<div style="position: relative;top: 15%">
+<div style="position: relative;padding-top: 100px">
 <c:if test="${!empty succ}">
     <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert"
@@ -40,8 +40,7 @@
 </c:if>
 </div>
 
-
-<div class="panel panel-default">
+<div class="panel panel-default" style="width: 90%;margin-left: 5%;">
     <div class="panel-heading">
         <h3 class="panel-title">
             全部读者

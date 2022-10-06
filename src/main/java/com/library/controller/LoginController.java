@@ -52,7 +52,7 @@ public class LoginController {
     @RequestMapping(value = "/api/loginCheck", method = RequestMethod.POST)
     public @ResponseBody
     Object loginCheck(HttpServletRequest request) {
-        long id = Long.parseLong(request.getParameter("id"));
+        String id = request.getParameter("id");
         String passwd = request.getParameter("passwd");
         boolean isReader = loginService.hasMatchReader(id, passwd);
         boolean isAdmin = loginService.hasMatchAdmin(id, passwd);
@@ -118,7 +118,7 @@ public class LoginController {
     @RequestMapping("/admin_repasswd_do")
     public String reAdminPasswdDo(HttpServletRequest request, String oldPasswd, String newPasswd, String reNewPasswd, RedirectAttributes redirectAttributes) {
         Admin admin = (Admin) request.getSession().getAttribute("admin");
-        long id = admin.getAdminId();
+        String id = admin.getAdminId();
         String password = loginService.getAdminPassword(id);
         if (password.equals(oldPasswd)) {
             if (loginService.adminRePassword(id, newPasswd)) {

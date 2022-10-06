@@ -10,10 +10,10 @@
         update admin set password = #{password}
         where admin_id = #{admin_id}
     </update>
-    <select id="getPassword" resultType="String" parameterType="long">
+    <select id="getPassword" resultType="String" parameterType="String">
         select password from admin where admin_id = #{admin_id}
     </select>
-    <select id="getUsername" resultType="String" parameterType="long">
+    <select id="getUsername" resultType="String" parameterType="String">
         select username from admin where admin_id = #{admin_id}
     </select>
 </mapper>

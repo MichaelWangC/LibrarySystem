@@ -56,7 +56,7 @@
         </div>
 
         <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
-        <button id="loginButton" style="background-color: #4a7098;" class="btn btn-primary  btn-block">登陆
+        <button id="loginButton" style="background-color: #4a7098;" class="btn btn-primary  btn-block">登录
         </button>
         <button id="registerButton"  class="btn btn-default btn-block">注册
         </button>
@@ -65,12 +65,12 @@
     <script>
         $("#id").keyup(
             function () {
-                if(isNaN($("#id").val())){
-                    $("#info").text("提示:账号只能为数字");
-                }
-                else {
-                    $("#info").text("");
-                }
+                // if(isNaN($("#id").val())){
+                //     $("#info").text("提示:账号只能为数字");
+                // }
+                // else {
+                //     $("#info").text("");
+                // }
             }
         )
         // 记住登录信息
@@ -107,9 +107,9 @@
             else if( passwd ==''){
                 $("#info").text("提示:密码不能为空");
             }
-            else if(isNaN( id )){
-                $("#info").text("提示:账号必须为数字");
-            }
+            // else if(isNaN( id )){
+            //     $("#info").text("提示:账号必须为数字");
+            // }
             else {
                 $.ajax({
                     type: "POST",

@@ -14,11 +14,11 @@ public class LoginService {
     @Autowired
     private AdminDao adminDao;
 
-    public boolean hasMatchReader(long employeeId,String password){
+    public boolean hasMatchReader(String employeeId,String password){
         return  readerCardDao.getIdMatchCount(employeeId, password)>0;
     }
 
-    public String getAdminUsername(long adminId) {
+    public String getAdminUsername(String adminId) {
         return adminDao.getUsername(adminId);
     }
 
@@ -26,18 +26,18 @@ public class LoginService {
         return readerCardDao.findReaderByReaderId(readerId);
     }
 
-    public ReaderCard findReaderCardByEmployeeId(long employeeId){
+    public ReaderCard findReaderCardByEmployeeId(String employeeId){
         return readerCardDao.findReaderCardByEmployeeId(employeeId);
     }
 
-    public boolean hasMatchAdmin(long adminId,String password){
+    public boolean hasMatchAdmin(String adminId,String password){
         return adminDao.getMatchCount(adminId, password) == 1;
     }
 
-    public boolean adminRePassword(long adminId, String newPassword){
+    public boolean adminRePassword(String adminId, String newPassword){
         return adminDao.resetPassword(adminId,newPassword)>0;
     }
-    public String getAdminPassword(long adminId){
+    public String getAdminPassword(String adminId){
         return adminDao.getPassword(adminId);
     }
 

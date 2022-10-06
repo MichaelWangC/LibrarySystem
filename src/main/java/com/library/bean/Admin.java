@@ -2,15 +2,15 @@ package com.library.bean;
 
 public class Admin {
 
-    private long admin_id;
+    private String admin_id;
     private String password;
     private String username;
 
-    public long getAdminId() {
+    public String getAdminId() {
         return admin_id;
     }
 
-    public void setAdminId(long admin_id) {
+    public void setAdminId(String admin_id) {
         this.admin_id = admin_id;
     }
 

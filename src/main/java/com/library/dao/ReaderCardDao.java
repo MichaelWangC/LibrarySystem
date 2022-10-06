@@ -17,7 +17,7 @@ public class ReaderCardDao {
 
     private final static String NAMESPACE = "com.library.dao.ReaderCardDao.";
 
-    public int getIdMatchCount(final long employee_id, final String password) {
+    public int getIdMatchCount(final String employee_id, final String password) {
         Map<String, Object> map = new HashMap<>();
         map.put("employee_id", employee_id);
         map.put("password", password);
@@ -28,7 +28,7 @@ public class ReaderCardDao {
         return sqlSessionTemplate.selectOne(NAMESPACE + "findReaderByReaderId", reader_id);
     }
 
-    public ReaderCard findReaderCardByEmployeeId(final long employee_id) {
+    public ReaderCard findReaderCardByEmployeeId(final String employee_id) {
         return sqlSessionTemplate.selectOne(NAMESPACE + "findReaderCardByEmployeeId", employee_id);
     }
 
