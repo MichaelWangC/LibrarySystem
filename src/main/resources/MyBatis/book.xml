@@ -16,11 +16,17 @@
     <select id="getAllBooks" resultType="com.library.bean.Book">
         select * from book_info
     </select>
-    <select id="queryBook" resultType="com.library.bean.Book" parameterType="String">
+    <select id="queryBook" resultType="com.library.bean.Book">
         select * from book_info where name like #{search}
+        <if test="classId!=null and classId!=''">
+            and class_id=#{classId}
+        </if>
     </select>
-    <select id="matchBook" resultType="int" parameterType="String">
+    <select id="matchBook" resultType="int">
         select count(*) from book_info where name like #{search}
+        <if test="classId!=null and classId!=''">
+            and class_id=#{classId}
+        </if>
     </select>
     <select id="getBook" resultType="com.library.bean.Book" parameterType="long">
         select a.*, b.class_name from book_info a, class_info b where a.book_id = #{book_id} and a.class_id=b.class_id

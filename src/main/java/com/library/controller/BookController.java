@@ -36,28 +36,45 @@ public class BookController {
     }
 
     @RequestMapping("/querybook.html")
-    public ModelAndView queryBookDo(String searchWord) {
+    public ModelAndView queryBookDo(String searchWord, String classId) {
         ModelAndView modelAndView = new ModelAndView("admin_books");
         modelAndView.addObject("searchWord", searchWord);
-        if (bookService.matchBook(searchWord)) {
-            ArrayList<Book> books = bookService.queryBook(searchWord);
+        modelAndView.addObject("classInfos", bookService.getClassInfo());
+        modelAndView.addObject("classId", classId);
+        if (bookService.matchBook(searchWord, classId)) {
+            ArrayList<Book> books = bookService.queryBook(searchWord, classId);
             modelAndView.addObject("books", books);
         } else {
-            modelAndView = new ModelAndView("admin_books", "error", "没有匹配的图书");
+            modelAndView.addObject("error", "没有匹配的图书");
         }
         return modelAndView;
     }
 
     @RequestMapping("/reader_querybook_do.html")
-    public ModelAndView readerQueryBookDo(String searchWord) {
-        if (bookService.matchBook(searchWord)) {
-            ArrayList<Book> books = bookService.queryBook(searchWord);
-            ModelAndView modelAndView = new ModelAndView("reader_books");
+    public ModelAndView readerQueryBookDo(HttpServletRequest request, String searchWord, String classId) {
+        ModelAndView modelAndView = new ModelAndView("reader_books");
+        modelAndView.addObject("searchWord", searchWord);
+        modelAndView.addObject("classInfos", bookService.getClassInfo());
+        modelAndView.addObject("classId", classId);
+        if (bookService.matchBook(searchWord, classId)) {
+            ArrayList<Book> books = bookService.queryBook(searchWord, classId);
             modelAndView.addObject("books", books);
-            return modelAndView;
+
+            ReaderCard readerCard = (ReaderCard) request.getSession().getAttribute("readercard");
+            ArrayList<Lend> myAllLendList = lendService.myLendList(readerCard.getReaderId());
+            ArrayList<Long> myLendList = new ArrayList<>();
+            for (Lend lend : myAllLendList) {
+                // 是否已归还
+                if (lend.getBackDate() == null) {
+                    myLendList.add(lend.getBookId());
+                }
+            }
+            modelAndView.addObject("myLendList", myLendList);
+
         } else {
-            return new ModelAndView("reader_books", "error", "没有匹配的图书");
+            modelAndView.addObject("error", "没有匹配的图书");
         }
+        return modelAndView;
     }
 
     @RequestMapping("/admin_books.html")
@@ -65,6 +82,7 @@ public class BookController {
         ArrayList<Book> books = bookService.getAllBooks();
         ModelAndView modelAndView = new ModelAndView("admin_books");
         modelAndView.addObject("books", books);
+        modelAndView.addObject("classInfos", bookService.getClassInfo());
         return modelAndView;
     }
 
@@ -150,6 +168,7 @@ public class BookController {
         ModelAndView modelAndView = new ModelAndView("reader_books");
         modelAndView.addObject("books", books);
         modelAndView.addObject("myLendList", myLendList);
+        modelAndView.addObject("classInfos", bookService.getClassInfo());
         return modelAndView;
     }
 }

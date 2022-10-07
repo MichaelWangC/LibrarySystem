@@ -21,6 +21,7 @@
     <form   method="post" action="querybook.html" class="form-inline"  id="searchform">
         <div class="input-group">
            <input type="text" placeholder="输入图书名" value="<c:out value="${searchWord}"></c:out>" class="form-control" id="search" name="searchWord" class="form-control">
+            <input type="text" class="form-control" name="classId" id="classId" style="display: none;">
             <span class="input-group-btn">
                             <input type="submit" value="搜索" class="btn btn-default">
             </span>
@@ -30,7 +31,6 @@
         $("#searchform").submit(function () {
             var val=$("#search").val();
             if(!val){
-                val = ''
                 // alert("请输入关键字");
                 // return false;
             }
@@ -67,9 +67,47 @@
 </div>
 <div class="panel panel-default" style="width: 90%;margin-left: 5%">
     <div class="panel-heading">
-        <h3 class="panel-title">
-            全部图书
-        </h3>
+<%--        <h3 class="panel-title">--%>
+<%--            全部图书--%>
+<%--        </h3>--%>
+        <div class="dropdown">
+            <%--                <input type="text" class="form-control" name="classId" id="classId" placeholder="请输入分类号">--%>
+            <button class="btn btn-default dropdown-toggle" type="button" id="classIdButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span id="className" class="panel-title">全部图书</span>
+
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="classIdButton">
+                <li><a onclick="classIdClick(this)" href="javascript:void(0)" value="">全部图书</a></li>
+                <c:forEach items="${classInfos}" var="alog">
+                    <li><a class="classid-item" onclick="classIdClick(this)" href="javascript:void(0)" value="<c:out value="${alog.classId}"></c:out>"><c:out value="${alog.className}"></c:out></a></li>
+                </c:forEach>
+            </ul>
+            <script>
+                function classIdClick(e) {
+                    var value = $(e).attr('value')
+                    var valueName = $(e).html()
+                    $('#className').html(valueName)
+                    $('#classId').val(value)
+
+                    $('#searchform').submit()
+                }
+                function init() {
+                    var classEleList = document.getElementsByClassName('classid-item')
+                    var classIdSel = "${classId}"
+                    if (!classIdSel) return
+                    for (var i=0; i<classEleList.length;i++) {
+                        var item = classEleList[i]
+                        if (item.getAttribute('value') == classIdSel) {
+                            $('#className').html(item.innerHTML)
+                            $('#classId').val(classIdSel)
+                            break;
+                        }
+                    }
+                }
+                init()
+            </script>
+        </div>
     </div>
     <div class="panel-body">
         <table class="table table-hover">

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BookDao {
@@ -16,14 +18,20 @@ public class BookDao {
     @Resource
     private SqlSessionTemplate sqlSessionTemplate;
 
-    public int matchBook(final String searchWord) {
+    public int matchBook(final String searchWord, final String classId) {
         String search = "%" + searchWord + "%";
-        return sqlSessionTemplate.selectOne(NAMESPACE + "matchBook", search);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("search", search);
+        paramMap.put("classId", classId);
+        return sqlSessionTemplate.selectOne(NAMESPACE + "matchBook", paramMap);
     }
 
-    public ArrayList<Book> queryBook(final String searchWord) {
+    public ArrayList<Book> queryBook(final String searchWord, final String classId) {
         String search = "%" + searchWord + "%";
-        List<Book> result = sqlSessionTemplate.selectList(NAMESPACE + "queryBook", search);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("search", search);
+        paramMap.put("classId", classId);
+        List<Book> result = sqlSessionTemplate.selectList(NAMESPACE + "queryBook", paramMap);
         return (ArrayList<Book>) result;
     }
 
