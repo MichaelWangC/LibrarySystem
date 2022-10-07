@@ -3,3 +3,9 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
+.table td {
+    font-size: 14px;
+    font-family: Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Heiti SC,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+    vertical-align: middle !important;
+}
