@@ -116,6 +116,7 @@
                 <th>书名</th>
                 <th>作者</th>
                 <th>出版社</th>
+                <th>类别</th>
                 <th width="120px">剩余数量</th>
                 <th>详情</th>
                 <th>编辑</th>
@@ -128,6 +129,7 @@
                 <td><c:out value="${book.name}"></c:out></td>
                 <td><c:out value="${book.author}"></c:out></td>
                 <td><c:out value="${book.publish}"></c:out></td>
+                <td><c:out value="${book.className}"></c:out></td>
                 <td><c:out value="${book.number}"></c:out></td>
                 <td><a href="admin_book_detail.html?bookId=<c:out value="${book.bookId}"></c:out>">
                     <button type="button" class="btn btn-success btn-xs">详情</button>
