@@ -107,6 +107,7 @@
                 <th>书名</th>
                 <th>作者</th>
                 <th>出版社</th>
+                <th>类别</th>
                 <th width="120px">剩余数量</th>
                 <th>借还</th>
                 <th>详情</th>
@@ -118,6 +119,7 @@
                     <td><c:out value="${book.name}"></c:out></td>
                     <td><c:out value="${book.author}"></c:out></td>
                     <td><c:out value="${book.publish}"></c:out></td>
+                    <td><c:out value="${book.className}"></c:out></td>
                     <td><c:out value="${book.number}"></c:out></td>
 
                     <c:set var="flag" value="false"/>
