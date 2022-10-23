@@ -39,6 +39,7 @@
                 </div>
 
                 <button id="submitBtn" class="btn btn-success btn-sm" class="text-left">确定</button>
+                <button id="returnBtn" class="btn btn-sm" class="text-left">返回</button>
             </div>
         </div>
     </div>
@@ -46,6 +47,9 @@
 </div>
 
 <script>
+    $("#returnBtn").click(function () {
+        window.history.go(-1)
+    })
     $("#submitBtn").click(function () {
         if($("#name").val()==''||$("#employeeId").val()==''||$("#deptName").val()==''||$("#phone").val()==''){
             alert("请填入完整读者信息！");

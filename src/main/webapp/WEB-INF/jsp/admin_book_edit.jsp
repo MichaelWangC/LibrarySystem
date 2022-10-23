@@ -79,7 +79,12 @@
                     <input type="text" class="form-control" name="number"  id="number" value="${detail.number}">
                 </div>
                 <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
+                <button id="returnBtn" class="btn btn-sm" class="text-left">返回</button>
                 <script>
+                    $("#returnBtn").click(function () {
+                        window.history.go(-1)
+                        return false;
+                    })
                     $("#addbook").submit(function () {
                         if($("#name").val()==''||$("#author").val()==''||$("#publish").val()==''||$("#introduction").val()==''||$("#language").val()==''||$("#pubstr").val()==''||$("#classId").val()==''||$("#number").val()==''){
                             alert("请填入完整图书信息！");
