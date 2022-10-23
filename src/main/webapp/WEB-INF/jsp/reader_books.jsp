@@ -129,13 +129,13 @@
                         </c:if>
                     </c:forEach>
                     <c:if test="${flag}">
-                        <td><a href="returnbook.html?bookId=<c:out value="${book.bookId}"></c:out>">
+                        <td><a href="returnbook.html?bookId=<c:out value="${book.bookId}"></c:out>" onclick="javascript:return returnbook('<c:out value="${book.name}"></c:out>')">
                             <button type="button" class="btn btn-danger btn-xs">归还</button>
                         </a></td>
                     </c:if>
                     <c:if test="${not flag}">
                         <c:if test="${book.number>0}">
-                            <td><a href="lendbook.html?bookId=<c:out value="${book.bookId}"></c:out>">
+                            <td><a href="lendbook.html?bookId=<c:out value="${book.bookId}"></c:out>" onclick="javascript:return lendBook('<c:out value="${book.name}"></c:out>')">
                                 <button type="button" class="btn btn-primary btn-xs">借阅</button>
                             </a></td>
                         </c:if>
@@ -156,4 +156,23 @@
 </div>
 
 </body>
+
+<script>
+    function lendBook(bookName) {
+        var msg = "您真的确定要借阅书籍《"+bookName+"》吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function returnbook(bookName) {
+        var msg = "您真的确定要归还书籍《"+bookName+"》吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 </html>
